@@ -1,0 +1,2773 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a>packagecheck (v0.2.1)</a>
+</h1>
+<h4>Checks to see if package dependencies used by a Meteor package are themselves up to date.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.packagecheck">module packagecheck</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser">
+            function <span class="apidocSignatureSpan">packagecheck.</span>package_version_parser
+            <span class="apidocSignatureSpan">(versionString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410">
+            function <span class="apidocSignatureSpan">packagecheck.</span>semver410
+            <span class="apidocSignatureSpan">(version, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">packagecheck.</span>npm</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">packagecheck.</span>package</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">packagecheck.</span>semver410.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">packagecheck.</span>version</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.packagecheck.npm">module packagecheck.npm</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.npm.depends">
+            function <span class="apidocSignatureSpan">packagecheck.npm.</span>depends
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.npm.require">
+            function <span class="apidocSignatureSpan">packagecheck.npm.</span>require
+            <span class="apidocSignatureSpan">(path)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.packagecheck.package">module packagecheck.package</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package.describe">
+            function <span class="apidocSignatureSpan">packagecheck.package.</span>describe
+            <span class="apidocSignatureSpan">(description)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package.onTest">
+            function <span class="apidocSignatureSpan">packagecheck.package.</span>onTest
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package.onUse">
+            function <span class="apidocSignatureSpan">packagecheck.package.</span>onUse
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package.on_test">
+            function <span class="apidocSignatureSpan">packagecheck.package.</span>on_test
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package.on_use">
+            function <span class="apidocSignatureSpan">packagecheck.package.</span>on_use
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package.registerBuildPlugin">
+            function <span class="apidocSignatureSpan">packagecheck.package.</span>registerBuildPlugin
+            <span class="apidocSignatureSpan">(description)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.packagecheck.package_version_parser">module packagecheck.package_version_parser</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.package_version_parser">
+            function <span class="apidocSignatureSpan">packagecheck.</span>package_version_parser
+            <span class="apidocSignatureSpan">(versionString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.PackageConstraint">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>PackageConstraint
+            <span class="apidocSignatureSpan">(part1, part2)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.VersionConstraint">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>VersionConstraint
+            <span class="apidocSignatureSpan">(vConstraintString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.compare">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>compare
+            <span class="apidocSignatureSpan">(versionOne, versionTwo)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.getValidServerVersion">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>getValidServerVersion
+            <span class="apidocSignatureSpan">(meteorVersionString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.invalidFirstFormatConstraint">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>invalidFirstFormatConstraint
+            <span class="apidocSignatureSpan">(validConstraint)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.lessThan">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>lessThan
+            <span class="apidocSignatureSpan">(versionOne, versionTwo)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.majorVersion">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>majorVersion
+            <span class="apidocSignatureSpan">(versionString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.parse">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>parse
+            <span class="apidocSignatureSpan">(versionString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.parsePackageConstraint">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>parsePackageConstraint
+            <span class="apidocSignatureSpan">(part1, part2)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.parseVersionConstraint">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>parseVersionConstraint
+            <span class="apidocSignatureSpan">(constraintString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.removeBuildID">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>removeBuildID
+            <span class="apidocSignatureSpan">(versionString)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.validatePackageName">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>validatePackageName
+            <span class="apidocSignatureSpan">(packageName, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.package_version_parser.versionMagnitude">
+            function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>versionMagnitude
+            <span class="apidocSignatureSpan">(versionString)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.packagecheck.semver410">module packagecheck.semver410</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.semver410">
+            function <span class="apidocSignatureSpan">packagecheck.</span>semver410
+            <span class="apidocSignatureSpan">(version, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.Comparator">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>Comparator
+            <span class="apidocSignatureSpan">(comp, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.Range">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>Range
+            <span class="apidocSignatureSpan">(range, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.SemVer">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>SemVer
+            <span class="apidocSignatureSpan">(version, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.clean">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>clean
+            <span class="apidocSignatureSpan">(version, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.cmp">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>cmp
+            <span class="apidocSignatureSpan">(a, op, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.compare">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>compare
+            <span class="apidocSignatureSpan">(a, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.compareIdentifiers">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>compareIdentifiers
+            <span class="apidocSignatureSpan">(a, b)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.compareLoose">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>compareLoose
+            <span class="apidocSignatureSpan">(a, b)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.eq">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>eq
+            <span class="apidocSignatureSpan">(a, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.gt">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>gt
+            <span class="apidocSignatureSpan">(a, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.gte">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>gte
+            <span class="apidocSignatureSpan">(a, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.gtr">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>gtr
+            <span class="apidocSignatureSpan">(version, range, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.inc">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>inc
+            <span class="apidocSignatureSpan">(version, release, loose, identifier)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.lt">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>lt
+            <span class="apidocSignatureSpan">(a, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.lte">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>lte
+            <span class="apidocSignatureSpan">(a, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.ltr">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>ltr
+            <span class="apidocSignatureSpan">(version, range, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.maxSatisfying">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>maxSatisfying
+            <span class="apidocSignatureSpan">(versions, range, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.neq">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>neq
+            <span class="apidocSignatureSpan">(a, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.outside">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>outside
+            <span class="apidocSignatureSpan">(version, range, hilo, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.parse">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>parse
+            <span class="apidocSignatureSpan">(version, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.rcompare">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>rcompare
+            <span class="apidocSignatureSpan">(a, b, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.rcompareIdentifiers">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>rcompareIdentifiers
+            <span class="apidocSignatureSpan">(a, b)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.rsort">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>rsort
+            <span class="apidocSignatureSpan">(list, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.satisfies">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>satisfies
+            <span class="apidocSignatureSpan">(version, range, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.sort">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>sort
+            <span class="apidocSignatureSpan">(list, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.toComparators">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>toComparators
+            <span class="apidocSignatureSpan">(range, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.valid">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>valid
+            <span class="apidocSignatureSpan">(version, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.validRange">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.</span>validRange
+            <span class="apidocSignatureSpan">(range, loose)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">packagecheck.semver410.</span>re</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">packagecheck.semver410.</span>src</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">packagecheck.semver410.</span>SEMVER_SPEC_VERSION</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.packagecheck.semver410.prototype">module packagecheck.semver410.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.prototype.compare">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>compare
+            <span class="apidocSignatureSpan">(other)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.prototype.compareMain">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>compareMain
+            <span class="apidocSignatureSpan">(other)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.prototype.comparePre">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>comparePre
+            <span class="apidocSignatureSpan">(other)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.prototype.format">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>format
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.prototype.inc">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>inc
+            <span class="apidocSignatureSpan">(release, identifier)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.prototype.inspect">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>inspect
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.semver410.prototype.toString">
+            function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.packagecheck.version">module packagecheck.version</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.version.getLatest">
+            function <span class="apidocSignatureSpan">packagecheck.version.</span>getLatest
+            <span class="apidocSignatureSpan">(packageName)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.packagecheck.version.getVersionUsed">
+            function <span class="apidocSignatureSpan">packagecheck.version.</span>getVersionUsed
+            <span class="apidocSignatureSpan">(packageName)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">packagecheck.version.</span>latest</span>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.packagecheck" id="apidoc.module.packagecheck">module packagecheck</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser" id="apidoc.element.packagecheck.package_version_parser">
+        function <span class="apidocSignatureSpan">packagecheck.</span>package_version_parser
+        <span class="apidocSignatureSpan">(versionString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">package_version_parser = function (versionString) {
+  if (! (typeof versionString === 'string')) {
+    throw new Error("Invalid PackageVersion argument: " + versionString);
+  }
+  if (! versionString) {
+    throwVersionParserError("Empty string is not a valid version");
+  }
+
+  // The buildID ("+foo" suffix) is part of semver, but split it off
+  // because it comes after the wrapNum.  The wrapNum ("_123" suffix)
+  // is a Meteor extension to semver.
+  var plusSplit = versionString.split('+');
+  var wrapSplit = plusSplit[0].split('_');
+  var wrapNum = 0;
+
+  if (plusSplit.length &gt; 2) {
+    throwVersionParserError("Can't have two + in version: " + versionString);
+  }
+  if (wrapSplit.length &gt; 2) {
+    throwVersionParserError("Can't have two _ in version: " + versionString);
+  }
+  if (wrapSplit.length &gt; 1) {
+    wrapNum = wrapSplit[1];
+    if (! wrapNum) {
+      throwVersionParserError("A wrap number must follow _");
+    } else if (!/^\d+$/.test(wrapNum)) {
+      throwVersionParserError(
+        "The wrap number (after _) must contain only digits, so " +
+          versionString + " is invalid.");
+    } else if (wrapNum[0] === "0") {
+      throwVersionParserError(
+        "The wrap number (after _) must not have a leading zero, so " +
+          versionString + " is invalid.");
+    }
+    wrapNum = parseInt(wrapNum, 10);
+  }
+
+  // semverPart is everything but the wrapNum, so for "1.0.0_2+xyz",
+  // it is "1.0.0+xyz".
+  var semverPart = wrapSplit[0];
+  if (plusSplit.length &gt; 1) {
+    semverPart += "+" + plusSplit[1];
+  }
+
+  // NPM's semver spec supports things like 'v1.0.0' and considers them valid,
+  // but we don't. Everything before the + or - should be of the x.x.x form.
+  if (! /^\d+\.\d+\.\d+(\+|-|$)/.test(semverPart)) {
+    throwVersionParserError(
+      "Version string must look like semver (eg '1.2.3'), not '"
+        + versionString + "'.");
+  };
+
+  var semverParse = semver.parse(semverPart);
+  if (! semverParse) {
+    throwVersionParserError(
+      "Version string must look like semver (eg '1.2.3'), not '"
+        + semverPart + "'.");
+  }
+
+  this.major = semverParse.major; // Number
+  this.minor = semverParse.minor; // Number
+  this.patch = semverParse.patch; // Number
+  this.prerelease = semverParse.prerelease; // [OneOf(Number, String)]
+  this.wrapNum = wrapNum; // Number
+  this.build = semverParse.build; // [String]
+  this.raw = versionString; // the entire version string
+  // `.version` is everything but the build ID ("+foo"), and it
+  // has been run through semver's canonicalization, ie "cleaned"
+  // (for whatever that's worth)
+  this.version = semverParse.version + (wrapNum ? '_' + wrapNum : '');
+  // everything but the wrapnum ("_123")
+  this.semver = semverParse.version + (
+    semverParse.build.length ? '+' + semverParse.build.join('.') : '');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410" id="apidoc.element.packagecheck.semver410">
+        function <span class="apidocSignatureSpan">packagecheck.</span>semver410
+        <span class="apidocSignatureSpan">(version, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SemVer(version, loose) {
+  if (version instanceof SemVer) {
+    if (version.loose === loose)
+      return version;
+    else
+      version = version.version;
+  } else if (typeof version !== 'string') {
+    throw new TypeError('Invalid Version: ' + version);
+  }
+
+  if (!(this instanceof SemVer))
+    return new SemVer(version, loose);
+
+  debug('SemVer', version, loose);
+  this.loose = loose;
+  var m = version.trim().match(loose ? re[LOOSE] : re[FULL]);
+
+  if (!m)
+    throw new TypeError('Invalid Version: ' + version);
+
+  this.raw = version;
+
+  // these are actually numbers
+  this.major = +m[1];
+  this.minor = +m[2];
+  this.patch = +m[3];
+
+  // numberify any prerelease numeric ids
+  if (!m[4])
+    this.prerelease = [];
+  else
+    this.prerelease = m[4].split('.').map(function(id) {
+      return (/^[0-9]+$/.test(id)) ? +id : id;
+    });
+
+  this.build = m[5] ? m[5].split('.') : [];
+  this.format();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.packagecheck.npm" id="apidoc.module.packagecheck.npm">module packagecheck.npm</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.npm.depends" id="apidoc.element.packagecheck.npm.depends">
+        function <span class="apidocSignatureSpan">packagecheck.npm.</span>depends
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">depends = function () {}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.npm.require" id="apidoc.element.packagecheck.npm.require">
+        function <span class="apidocSignatureSpan">packagecheck.npm.</span>require
+        <span class="apidocSignatureSpan">(path)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function require(path) {
+  try {
+    exports.requireDepth += 1;
+    return self.require(path);
+  } finally {
+    exports.requireDepth -= 1;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.packagecheck.package" id="apidoc.module.packagecheck.package">module packagecheck.package</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package.describe" id="apidoc.element.packagecheck.package.describe">
+        function <span class="apidocSignatureSpan">packagecheck.package.</span>describe
+        <span class="apidocSignatureSpan">(description)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">describe = function (description) {
+
+  // If the previous package output to the console then we need to add a blank line.
+
+  if (Package.prevPackageDidOutput)
+    console.log('');
+
+  console.log('=&gt; Checking package ' + description.name + '...');
+  Package.prevPackageDidOutput = false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package.onTest" id="apidoc.element.packagecheck.package.onTest">
+        function <span class="apidocSignatureSpan">packagecheck.package.</span>onTest
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onTest = function (fn) {
+  try { fn(api); }
+  catch (e) { console.log(e); }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package.onUse" id="apidoc.element.packagecheck.package.onUse">
+        function <span class="apidocSignatureSpan">packagecheck.package.</span>onUse
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onUse = function (fn) {
+  try { fn(api); }
+  catch (e) { console.log(e); }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package.on_test" id="apidoc.element.packagecheck.package.on_test">
+        function <span class="apidocSignatureSpan">packagecheck.package.</span>on_test
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">on_test = function (fn) {
+  if (warnings) console.log('Warning: Package uses deprecated \'on_test\' declaration. Use \'onTest\' instead.');
+  try { fn(api); }
+  catch (e) { console.log(e); }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package.on_use" id="apidoc.element.packagecheck.package.on_use">
+        function <span class="apidocSignatureSpan">packagecheck.package.</span>on_use
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">on_use = function (fn) {
+  if (warnings) console.log('Warning: Package uses deprecated \'on_use\' declaration. Use \'onUse\' instead.');
+  try { fn(api); }
+  catch (e) { console.log(e); }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package.registerBuildPlugin" id="apidoc.element.packagecheck.package.registerBuildPlugin">
+        function <span class="apidocSignatureSpan">packagecheck.package.</span>registerBuildPlugin
+        <span class="apidocSignatureSpan">(description)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">registerBuildPlugin = function (description) {
+  api.use(description.use);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.packagecheck.package_version_parser" id="apidoc.module.packagecheck.package_version_parser">module packagecheck.package_version_parser</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.package_version_parser" id="apidoc.element.packagecheck.package_version_parser.package_version_parser">
+        function <span class="apidocSignatureSpan">packagecheck.</span>package_version_parser
+        <span class="apidocSignatureSpan">(versionString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">package_version_parser = function (versionString) {
+  if (! (typeof versionString === 'string')) {
+    throw new Error("Invalid PackageVersion argument: " + versionString);
+  }
+  if (! versionString) {
+    throwVersionParserError("Empty string is not a valid version");
+  }
+
+  // The buildID ("+foo" suffix) is part of semver, but split it off
+  // because it comes after the wrapNum.  The wrapNum ("_123" suffix)
+  // is a Meteor extension to semver.
+  var plusSplit = versionString.split('+');
+  var wrapSplit = plusSplit[0].split('_');
+  var wrapNum = 0;
+
+  if (plusSplit.length &gt; 2) {
+    throwVersionParserError("Can't have two + in version: " + versionString);
+  }
+  if (wrapSplit.length &gt; 2) {
+    throwVersionParserError("Can't have two _ in version: " + versionString);
+  }
+  if (wrapSplit.length &gt; 1) {
+    wrapNum = wrapSplit[1];
+    if (! wrapNum) {
+      throwVersionParserError("A wrap number must follow _");
+    } else if (!/^\d+$/.test(wrapNum)) {
+      throwVersionParserError(
+        "The wrap number (after _) must contain only digits, so " +
+          versionString + " is invalid.");
+    } else if (wrapNum[0] === "0") {
+      throwVersionParserError(
+        "The wrap number (after _) must not have a leading zero, so " +
+          versionString + " is invalid.");
+    }
+    wrapNum = parseInt(wrapNum, 10);
+  }
+
+  // semverPart is everything but the wrapNum, so for "1.0.0_2+xyz",
+  // it is "1.0.0+xyz".
+  var semverPart = wrapSplit[0];
+  if (plusSplit.length &gt; 1) {
+    semverPart += "+" + plusSplit[1];
+  }
+
+  // NPM's semver spec supports things like 'v1.0.0' and considers them valid,
+  // but we don't. Everything before the + or - should be of the x.x.x form.
+  if (! /^\d+\.\d+\.\d+(\+|-|$)/.test(semverPart)) {
+    throwVersionParserError(
+      "Version string must look like semver (eg '1.2.3'), not '"
+        + versionString + "'.");
+  };
+
+  var semverParse = semver.parse(semverPart);
+  if (! semverParse) {
+    throwVersionParserError(
+      "Version string must look like semver (eg '1.2.3'), not '"
+        + semverPart + "'.");
+  }
+
+  this.major = semverParse.major; // Number
+  this.minor = semverParse.minor; // Number
+  this.patch = semverParse.patch; // Number
+  this.prerelease = semverParse.prerelease; // [OneOf(Number, String)]
+  this.wrapNum = wrapNum; // Number
+  this.build = semverParse.build; // [String]
+  this.raw = versionString; // the entire version string
+  // `.version` is everything but the build ID ("+foo"), and it
+  // has been run through semver's canonicalization, ie "cleaned"
+  // (for whatever that's worth)
+  this.version = semverParse.version + (wrapNum ? '_' + wrapNum : '');
+  // everything but the wrapnum ("_123")
+  this.semver = semverParse.version + (
+    semverParse.build.length ? '+' + semverParse.build.join('.') : '');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.PackageConstraint" id="apidoc.element.packagecheck.package_version_parser.PackageConstraint">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>PackageConstraint
+        <span class="apidocSignatureSpan">(part1, part2)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">PackageConstraint = function (part1, part2) {
+  if ((typeof part1 !== "string") ||
+      (part2 &amp;&amp; (typeof part2 !== "string") &amp;&amp;
+       ! (part2 instanceof PV.VersionConstraint))) {
+    throw new Error("constraintString must be a string");
+  }
+
+  var packageName, versionConstraint, vConstraintString;
+  if (part2) {
+    packageName = part1;
+    if (part2 instanceof PV.VersionConstraint) {
+      versionConstraint = part2;
+    } else {
+      vConstraintString = part2;
+    }
+  } else if (part1.indexOf("@") &gt;= 0) {
+    // Shave off last part after @, with "a@b@c" becoming ["a@b", "c"].
+    // Validating the package name will catch extra @.
+    var parts = part1.match(/^(.*)@([^@]*)$/).slice(1);
+    packageName = parts[0];
+    vConstraintString = parts[1];
+    if (! vConstraintString) {
+      throwVersionParserError(
+        "Version constraint for package '" + packageName +
+          "' cannot be empty; leave off the @ if you don't want to constrain " +
+          "the version.");
+    }
+  } else {
+    packageName = part1;
+    vConstraintString = "";
+  }
+
+  PV.validatePackageName(packageName);
+  if (versionConstraint) {
+    vConstraintString = versionConstraint.raw;
+  } else {
+    versionConstraint = PV.parseVersionConstraint(vConstraintString);
+  }
+
+  this.package = packageName;
+  this.constraintString = vConstraintString;
+  this.versionConstraint = versionConstraint;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// { package: String,
+//   constraintString: String,
+//   versionConstraint: /*PV.VersionConstraint*/ {
+//     raw: String,
+//     alternatives: [{versionString: String|null,
+//                     type: String}]}}
+PV.parsePackageConstraint = function (part1, part2) {
+return new PV.<span class="apidocCodeKeywordSpan">PackageConstraint</span>(part1, part2);
+};
+
+PV.validatePackageName = function (packageName, options) {
+options = options || {};
+
+var badChar = packageName.match(/[^a-z0-9:.\-]/);
+if (badChar) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.VersionConstraint" id="apidoc.element.packagecheck.package_version_parser.VersionConstraint">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>VersionConstraint
+        <span class="apidocSignatureSpan">(vConstraintString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">VersionConstraint = function (vConstraintString) {
+  var alternatives;
+  // If there is no version string ("" or null), then our only
+  // constraint is any-reasonable.
+  if (! vConstraintString) {
+    // .versionString === null is relied on in the tool
+    alternatives =
+      [ { type: "any-reasonable", versionString: null } ];
+    vConstraintString = "";
+  } else {
+    // Parse out the versionString.
+    var parts = vConstraintString.split(/ *\|\| */);
+    alternatives = __.map(parts, function (alt) {
+      if (! alt) {
+        throwVersionParserError("Invalid constraint string: " +
+                                vConstraintString);
+      }
+      return parseSimpleConstraint(alt);
+    });
+  }
+
+  this.raw = vConstraintString;
+  this.alternatives = alternatives;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+
+  this.raw = vConstraintString;
+  this.alternatives = alternatives;
+};
+
+PV.parseVersionConstraint = function (constraintString) {
+  return new PV.<span class="apidocCodeKeywordSpan">VersionConstraint</span>(constraintString);
+};
+
+// A PackageConstraint consists of a package name and a version constraint.
+// Call either with args (package, versionConstraintString) or
+// (packageConstraintString), or (package, versionConstraint).
+// That is, ("foo", "1.2.3") or ("foo@1.2.3"), or ("foo", vc) where vc
+// is instanceof PV.VersionConstraint.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.compare" id="apidoc.element.packagecheck.package_version_parser.compare">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>compare
+        <span class="apidocSignatureSpan">(versionOne, versionTwo)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">compare = function (versionOne, versionTwo) {
+  var v1 = versionOne;
+  if (typeof v1 === 'string') {
+    v1 = PV.parse(v1);
+  }
+  var v2 = versionTwo;
+  if (typeof v2 === 'string') {
+    v2 = PV.parse(v2);
+  }
+
+  // If the semver parts are different, use the semver library to compare,
+  // ignoring wrap numbers.  (The semver library will ignore the build ID
+  // per the semver spec.)
+  if (v1.semver !== v2.semver) {
+    return semver.compare(v1.semver, v2.semver);
+  } else {
+    // If the semver components are equal, then the one with the smaller wrap
+    // numbers is smaller.
+    return v1.wrapNum - v2.wrapNum;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return memo + digit / Math.pow(4100, index+1);
+  }, -1);
+};
+
+// Takes in two meteor versions. Returns true if the first one is less than the second.
+// Versions are strings or PackageVersion objects.
+PV.lessThan = function (versionOne, versionTwo) {
+  return PV.<span class="apidocCodeKeywordSpan">compare</span>(versionOne, versionTwo) &lt; 0;
+};
+
+// Given a string version, returns its major version (the first section of the
+// semver), as an integer. Two versions are compatible if they have the same
+// version number.
+//
+// versionString: valid meteor version string.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.getValidServerVersion" id="apidoc.element.packagecheck.package_version_parser.getValidServerVersion">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>getValidServerVersion
+        <span class="apidocSignatureSpan">(meteorVersionString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getValidServerVersion = function (meteorVersionString) {
+  return PV.parse(meteorVersionString).version;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    versionString = constraintString.substr(1);
+  } else {
+    type = "compatible-with";
+    versionString = constraintString;
+  }
+
+  // This will throw if the version string is invalid.
+  PV.<span class="apidocCodeKeywordSpan">getValidServerVersion</span>(versionString);
+
+  return { type: type, versionString: versionString };
+};
+
+
+// Check to see if the versionString that we pass in is a valid meteor version.
+//
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.invalidFirstFormatConstraint" id="apidoc.element.packagecheck.package_version_parser.invalidFirstFormatConstraint">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>invalidFirstFormatConstraint
+        <span class="apidocSignatureSpan">(validConstraint)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">invalidFirstFormatConstraint = function (validConstraint) {
+  if (!validConstraint) return false;
+  // We can check this easily right now, because we introduced some new
+  // characters. Anything with those characters is invalid prior to
+  // 0.9.3. XXX: If we ever have to go through these, we should write a more
+  // complicated regex.
+  return (/_/.test(validConstraint) ||
+          /\|/.test(validConstraint));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.lessThan" id="apidoc.element.packagecheck.package_version_parser.lessThan">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>lessThan
+        <span class="apidocSignatureSpan">(versionOne, versionTwo)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">lessThan = function (versionOne, versionTwo) {
+  return PV.compare(versionOne, versionTwo) &lt; 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (version) {
+
+// This package has a version constraint
+
+try {
+  var latestVersion = Version.getLatest(packageName);
+  if (latestVersion) {
+    if (PackageVersion.<span class="apidocCodeKeywordSpan">lessThan</span>(version, latestVersion)) {
+      console.log(packageName + ' version ' + latestVersion + ' is available (' + version + ' currently
+ specified).');
+      return true;
+    } else if (verbose) {
+      console.log(packageName + ' version ' + latestVersion + ' is up to date.');
+      return true;
+    }
+  } else {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.majorVersion" id="apidoc.element.packagecheck.package_version_parser.majorVersion">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>majorVersion
+        <span class="apidocSignatureSpan">(versionString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">majorVersion = function (versionString) {
+  return PV.parse(versionString).major;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.parse" id="apidoc.element.packagecheck.package_version_parser.parse">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>parse
+        <span class="apidocSignatureSpan">(versionString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parse = function (versionString) {
+  return new PV(versionString);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// The input string "1.2.3-rc.5_1+12345" has a (major, minor, patch) of
+// (1, 2, 3), a prerelease of ["rc", 5], a wrapNum of 1, a build of
+// ["12345"], a raw of "1.2.3-rc.5_1+12345", a version of
+// "1.2.3-rc.5_1", and a semver of "1.2.3-rc.5+12345".
+//
+// Throws if the version string is invalid in any way.
+//
+// You can write `PV.<span class="apidocCodeKeywordSpan">parse</span>("1.2.3")` as an alternative to `new PV("1.2
+.3")`
+var PV = function (versionString) {
+if (! (typeof versionString === 'string')) {
+  throw new Error("Invalid PackageVersion argument: " + versionString);
+}
+if (! versionString) {
+  throwVersionParserError("Empty string is not a valid version");
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.parsePackageConstraint" id="apidoc.element.packagecheck.package_version_parser.parsePackageConstraint">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>parsePackageConstraint
+        <span class="apidocSignatureSpan">(part1, part2)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parsePackageConstraint = function (part1, part2) {
+  return new PV.PackageConstraint(part1, part2);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.parseVersionConstraint" id="apidoc.element.packagecheck.package_version_parser.parseVersionConstraint">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>parseVersionConstraint
+        <span class="apidocSignatureSpan">(constraintString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parseVersionConstraint = function (constraintString) {
+  return new PV.VersionConstraint(constraintString);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    vConstraintString = "";
+  }
+
+  PV.validatePackageName(packageName);
+  if (versionConstraint) {
+    vConstraintString = versionConstraint.raw;
+  } else {
+    versionConstraint = PV.<span class="apidocCodeKeywordSpan">parseVersionConstraint</span>(vConstraintString);
+  }
+
+  this.package = packageName;
+  this.constraintString = vConstraintString;
+  this.versionConstraint = versionConstraint;
+};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.removeBuildID" id="apidoc.element.packagecheck.package_version_parser.removeBuildID">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>removeBuildID
+        <span class="apidocSignatureSpan">(versionString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">removeBuildID = function (versionString) {
+  return versionString.replace(/\+.*$/, '');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.validatePackageName" id="apidoc.element.packagecheck.package_version_parser.validatePackageName">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>validatePackageName
+        <span class="apidocSignatureSpan">(packageName, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validatePackageName = function (packageName, options) {
+  options = options || {};
+
+  var badChar = packageName.match(/[^a-z0-9:.\-]/);
+  if (badChar) {
+    if (options.detailedColonExplanation) {
+      throwVersionParserError(
+        "Bad character in package name: " + JSON.stringify(badChar[0]) +
+          ".\n\nPackage names can only contain lowercase ASCII alphanumerics, " +
+          "dash, or dot.\nIf you plan to publish a package, it must be " +
+          "prefixed with your\nMeteor Developer Account username and a colon.");
+    }
+    throwVersionParserError(
+      "Package names can only contain lowercase ASCII alphanumerics, dash, " +
+        "dot, or colon, not " + JSON.stringify(badChar[0]) + ".");
+  }
+  if (!/[a-z]/.test(packageName)) {
+    throwVersionParserError("Package name must contain a lowercase ASCII letter: "
+                            + JSON.stringify(packageName));
+  }
+  if (packageName[0] === '.') {
+    throwVersionParserError("Package name may not begin with a dot: "
+                            + JSON.stringify(packageName));
+  }
+  if (packageName.slice(-1) === '.') {
+    throwVersionParserError("Package name may not end with a dot: "
+                            + JSON.stringify(packageName));
+  }
+
+  if (packageName.slice(-1) === '.') {
+    throwVersionParserError("Package names may not end with a dot: " +
+                            JSON.stringify(packageName));
+  }
+  if (packageName.indexOf('..') &gt;= 0) {
+    throwVersionParserError("Package names may not contain two consecutive dots: " +
+                            JSON.stringify(packageName));
+  }
+  if (packageName[0] === '-') {
+    throwVersionParserError("Package names may not begin with a hyphen: " +
+                            JSON.stringify(packageName));
+  }
+  // (There is already a package ending with a `-` and one with two consecutive `-`
+  // in troposphere, though they both look like typos.)
+
+  if (packageName[0] === ":" || __.last(packageName) === ":") {
+    throwVersionParserError("Package names may not start or end with a colon: " +
+                            JSON.stringify(packageName));
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        "the version.");
+  }
+} else {
+  packageName = part1;
+  vConstraintString = "";
+}
+
+PV.<span class="apidocCodeKeywordSpan">validatePackageName</span>(packageName);
+if (versionConstraint) {
+  vConstraintString = versionConstraint.raw;
+} else {
+  versionConstraint = PV.parseVersionConstraint(vConstraintString);
+}
+
+this.package = packageName;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.package_version_parser.versionMagnitude" id="apidoc.element.packagecheck.package_version_parser.versionMagnitude">
+        function <span class="apidocSignatureSpan">packagecheck.package_version_parser.</span>versionMagnitude
+        <span class="apidocSignatureSpan">(versionString)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">versionMagnitude = function (versionString) {
+  var v = PV.parse(versionString);
+
+  return v.major * 100 * 100 +
+    v.minor * 100 +
+    v.patch +
+    v.wrapNum / 100 +
+    prereleaseIdentifierToFraction(v.prerelease) / 100 / 100;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+} else {
+  PackageVersion = PV;
+}
+
+// Converts a meteor version into a large floating point number, which
+// is (more or less [*]) unique to that version. Satisfies the
+// following guarantee: If PV.lessThan(v1, v2) then
+// PV.<span class="apidocCodeKeywordSpan">versionMagnitude</span>(v1) &lt; PV.versionMagnitude(v2) [*]
+//
+// [* XXX!] We don't quite satisfy the uniqueness and comparison properties in
+// these cases:
+// 1. If any of the version parts are greater than 100 (pretty unlikely?)
+// 2. If we're dealing with a prerelease version, we only look at the
+//    first two characters of each prerelease part. So, "1.0.0-beta" and
+//    "1.0.0-bear" will have the same magnitude.
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.packagecheck.semver410" id="apidoc.module.packagecheck.semver410">module packagecheck.semver410</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.semver410" id="apidoc.element.packagecheck.semver410.semver410">
+        function <span class="apidocSignatureSpan">packagecheck.</span>semver410
+        <span class="apidocSignatureSpan">(version, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SemVer(version, loose) {
+  if (version instanceof SemVer) {
+    if (version.loose === loose)
+      return version;
+    else
+      version = version.version;
+  } else if (typeof version !== 'string') {
+    throw new TypeError('Invalid Version: ' + version);
+  }
+
+  if (!(this instanceof SemVer))
+    return new SemVer(version, loose);
+
+  debug('SemVer', version, loose);
+  this.loose = loose;
+  var m = version.trim().match(loose ? re[LOOSE] : re[FULL]);
+
+  if (!m)
+    throw new TypeError('Invalid Version: ' + version);
+
+  this.raw = version;
+
+  // these are actually numbers
+  this.major = +m[1];
+  this.minor = +m[2];
+  this.patch = +m[3];
+
+  // numberify any prerelease numeric ids
+  if (!m[4])
+    this.prerelease = [];
+  else
+    this.prerelease = m[4].split('.').map(function(id) {
+      return (/^[0-9]+$/.test(id)) ? +id : id;
+    });
+
+  this.build = m[5] ? m[5].split('.') : [];
+  this.format();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.Comparator" id="apidoc.element.packagecheck.semver410.Comparator">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>Comparator
+        <span class="apidocSignatureSpan">(comp, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Comparator(comp, loose) {
+  if (comp instanceof Comparator) {
+    if (comp.loose === loose)
+      return comp;
+    else
+      comp = comp.value;
+  }
+
+  if (!(this instanceof Comparator))
+    return new Comparator(comp, loose);
+
+  debug('comparator', comp, loose);
+  this.loose = loose;
+  this.parse(comp);
+
+  if (this.semver === ANY)
+    this.value = '';
+  else
+    this.value = this.operator + this.semver.version;
+
+  debug('comp', this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.Range" id="apidoc.element.packagecheck.semver410.Range">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>Range
+        <span class="apidocSignatureSpan">(range, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Range(range, loose) {
+  if ((range instanceof Range) &amp;&amp; range.loose === loose)
+    return range;
+
+  if (!(this instanceof Range))
+    return new Range(range, loose);
+
+  this.loose = loose;
+
+  // First, split based on boolean or ||
+  this.raw = range;
+  this.set = range.split(/\s*\|\|\s*/).map(function(range) {
+    return this.parseRange(range.trim());
+  }, this).filter(function(c) {
+    // throw out any that are not relevant for whatever reason
+    return c.length;
+  });
+
+  if (!this.set.length) {
+    throw new TypeError('Invalid SemVer Range: ' + range);
+  }
+
+  this.format();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.SemVer" id="apidoc.element.packagecheck.semver410.SemVer">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>SemVer
+        <span class="apidocSignatureSpan">(version, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SemVer(version, loose) {
+  if (version instanceof SemVer) {
+    if (version.loose === loose)
+      return version;
+    else
+      version = version.version;
+  } else if (typeof version !== 'string') {
+    throw new TypeError('Invalid Version: ' + version);
+  }
+
+  if (!(this instanceof SemVer))
+    return new SemVer(version, loose);
+
+  debug('SemVer', version, loose);
+  this.loose = loose;
+  var m = version.trim().match(loose ? re[LOOSE] : re[FULL]);
+
+  if (!m)
+    throw new TypeError('Invalid Version: ' + version);
+
+  this.raw = version;
+
+  // these are actually numbers
+  this.major = +m[1];
+  this.minor = +m[2];
+  this.patch = +m[3];
+
+  // numberify any prerelease numeric ids
+  if (!m[4])
+    this.prerelease = [];
+  else
+    this.prerelease = m[4].split('.').map(function(id) {
+      return (/^[0-9]+$/.test(id)) ? +id : id;
+    });
+
+  this.build = m[5] ? m[5].split('.') : [];
+  this.format();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.clean" id="apidoc.element.packagecheck.semver410.clean">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>clean
+        <span class="apidocSignatureSpan">(version, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function clean(version, loose) {
+  var s = parse(version.trim().replace(/^[=v]+/, ''), loose);
+  return s ? s.version : null;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.cmp" id="apidoc.element.packagecheck.semver410.cmp">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>cmp
+        <span class="apidocSignatureSpan">(a, op, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function cmp(a, op, b, loose) {
+  var ret;
+  switch (op) {
+    case '===':
+      if (typeof a === 'object') a = a.version;
+      if (typeof b === 'object') b = b.version;
+      ret = a === b;
+      break;
+    case '!==':
+      if (typeof a === 'object') a = a.version;
+      if (typeof b === 'object') b = b.version;
+      ret = a !== b;
+      break;
+    case '': case '=': case '==': ret = eq(a, b, loose); break;
+    case '!=': ret = neq(a, b, loose); break;
+    case '&gt;': ret = gt(a, b, loose); break;
+    case '&gt;=': ret = gte(a, b, loose); break;
+    case '&lt;': ret = lt(a, b, loose); break;
+    case '&lt;=': ret = lte(a, b, loose); break;
+    default: throw new TypeError('Invalid operator: ' + op);
+  }
+  return ret;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.compare" id="apidoc.element.packagecheck.semver410.compare">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>compare
+        <span class="apidocSignatureSpan">(a, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compare(a, b, loose) {
+  return new SemVer(a, loose).compare(b);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return memo + digit / Math.pow(4100, index+1);
+  }, -1);
+};
+
+// Takes in two meteor versions. Returns true if the first one is less than the second.
+// Versions are strings or PackageVersion objects.
+PV.lessThan = function (versionOne, versionTwo) {
+  return PV.<span class="apidocCodeKeywordSpan">compare</span>(versionOne, versionTwo) &lt; 0;
+};
+
+// Given a string version, returns its major version (the first section of the
+// semver), as an integer. Two versions are compatible if they have the same
+// version number.
+//
+// versionString: valid meteor version string.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.compareIdentifiers" id="apidoc.element.packagecheck.semver410.compareIdentifiers">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>compareIdentifiers
+        <span class="apidocSignatureSpan">(a, b)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compareIdentifiers(a, b) {
+  var anum = numeric.test(a);
+  var bnum = numeric.test(b);
+
+  if (anum &amp;&amp; bnum) {
+    a = +a;
+    b = +b;
+  }
+
+  return (anum &amp;&amp; !bnum) ? -1 :
+         (bnum &amp;&amp; !anum) ? 1 :
+         a &lt; b ? -1 :
+         a &gt; b ? 1 :
+         0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.compareLoose" id="apidoc.element.packagecheck.semver410.compareLoose">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>compareLoose
+        <span class="apidocSignatureSpan">(a, b)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function compareLoose(a, b) {
+  return compare(a, b, true);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.eq" id="apidoc.element.packagecheck.semver410.eq">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>eq
+        <span class="apidocSignatureSpan">(a, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function eq(a, b, loose) {
+  return compare(a, b, loose) === 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.gt" id="apidoc.element.packagecheck.semver410.gt">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>gt
+        <span class="apidocSignatureSpan">(a, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function gt(a, b, loose) {
+  return compare(a, b, loose) &gt; 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.gte" id="apidoc.element.packagecheck.semver410.gte">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>gte
+        <span class="apidocSignatureSpan">(a, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function gte(a, b, loose) {
+  return compare(a, b, loose) &gt;= 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.gtr" id="apidoc.element.packagecheck.semver410.gtr">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>gtr
+        <span class="apidocSignatureSpan">(version, range, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function gtr(version, range, loose) {
+  return outside(version, range, '&gt;', loose);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.inc" id="apidoc.element.packagecheck.semver410.inc">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>inc
+        <span class="apidocSignatureSpan">(version, release, loose, identifier)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function inc(version, release, loose, identifier) {
+  if (typeof(loose) === 'string') {
+    identifier = loose;
+    loose = undefined;
+  }
+
+  try {
+    return new SemVer(version, loose).inc(release, identifier).version;
+  } catch (er) {
+    return null;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+SemVer.prototype.inc = function(release, identifier) {
+switch (release) {
+  case 'premajor':
+    this.prerelease.length = 0;
+    this.patch = 0;
+    this.minor = 0;
+    this.major++;
+    this.<span class="apidocCodeKeywordSpan">inc</span>('pre', identifier);
+    break;
+  case 'preminor':
+    this.prerelease.length = 0;
+    this.patch = 0;
+    this.minor++;
+    this.inc('pre', identifier);
+    break;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.lt" id="apidoc.element.packagecheck.semver410.lt">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>lt
+        <span class="apidocSignatureSpan">(a, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function lt(a, b, loose) {
+  return compare(a, b, loose) &lt; 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.lte" id="apidoc.element.packagecheck.semver410.lte">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>lte
+        <span class="apidocSignatureSpan">(a, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function lte(a, b, loose) {
+  return compare(a, b, loose) &lt;= 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.ltr" id="apidoc.element.packagecheck.semver410.ltr">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>ltr
+        <span class="apidocSignatureSpan">(version, range, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ltr(version, range, loose) {
+  return outside(version, range, '&lt;', loose);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.maxSatisfying" id="apidoc.element.packagecheck.semver410.maxSatisfying">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>maxSatisfying
+        <span class="apidocSignatureSpan">(versions, range, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function maxSatisfying(versions, range, loose) {
+  return versions.filter(function(version) {
+    return satisfies(version, range, loose);
+  }).sort(function(a, b) {
+    return rcompare(a, b, loose);
+  })[0] || null;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.neq" id="apidoc.element.packagecheck.semver410.neq">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>neq
+        <span class="apidocSignatureSpan">(a, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function neq(a, b, loose) {
+  return compare(a, b, loose) !== 0;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.outside" id="apidoc.element.packagecheck.semver410.outside">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>outside
+        <span class="apidocSignatureSpan">(version, range, hilo, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function outside(version, range, hilo, loose) {
+  version = new SemVer(version, loose);
+  range = new Range(range, loose);
+
+  var gtfn, ltefn, ltfn, comp, ecomp;
+  switch (hilo) {
+    case '&gt;':
+      gtfn = gt;
+      ltefn = lte;
+      ltfn = lt;
+      comp = '&gt;';
+      ecomp = '&gt;=';
+      break;
+    case '&lt;':
+      gtfn = lt;
+      ltefn = gte;
+      ltfn = gt;
+      comp = '&lt;';
+      ecomp = '&lt;=';
+      break;
+    default:
+      throw new TypeError('Must provide a hilo val of "&lt;" or "&gt;"');
+  }
+
+  // If it satisifes the range it is not outside
+  if (satisfies(version, range, loose)) {
+    return false;
+  }
+
+  // From now on, variable terms are as if we're in "gtr" mode.
+  // but note that everything is flipped for the "ltr" function.
+
+  for (var i = 0; i &lt; range.set.length; ++i) {
+    var comparators = range.set[i];
+
+    var high = null;
+    var low = null;
+
+    comparators.forEach(function(comparator) {
+      high = high || comparator;
+      low = low || comparator;
+      if (gtfn(comparator.semver, high.semver, loose)) {
+        high = comparator;
+      } else if (ltfn(comparator.semver, low.semver, loose)) {
+        low = comparator;
+      }
+    });
+
+    // If the edge version comparator has a operator then our version
+    // isn't outside it
+    if (high.operator === comp || high.operator === ecomp) {
+      return false;
+    }
+
+    // If the lowest version comparator has an operator and our version
+    // is less than it then it isn't higher than the range
+    if ((!low.operator || low.operator === comp) &amp;&amp;
+        ltefn(version, low.semver)) {
+      return false;
+    } else if (low.operator === ecomp &amp;&amp; ltfn(version, low.semver)) {
+      return false;
+    }
+  }
+  return true;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.parse" id="apidoc.element.packagecheck.semver410.parse">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>parse
+        <span class="apidocSignatureSpan">(version, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function parse(version, loose) {
+  var r = loose ? re[LOOSE] : re[FULL];
+  return (r.test(version)) ? new SemVer(version, loose) : null;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// The input string "1.2.3-rc.5_1+12345" has a (major, minor, patch) of
+// (1, 2, 3), a prerelease of ["rc", 5], a wrapNum of 1, a build of
+// ["12345"], a raw of "1.2.3-rc.5_1+12345", a version of
+// "1.2.3-rc.5_1", and a semver of "1.2.3-rc.5+12345".
+//
+// Throws if the version string is invalid in any way.
+//
+// You can write `PV.<span class="apidocCodeKeywordSpan">parse</span>("1.2.3")` as an alternative to `new PV("1.2
+.3")`
+var PV = function (versionString) {
+if (! (typeof versionString === 'string')) {
+  throw new Error("Invalid PackageVersion argument: " + versionString);
+}
+if (! versionString) {
+  throwVersionParserError("Empty string is not a valid version");
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.rcompare" id="apidoc.element.packagecheck.semver410.rcompare">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>rcompare
+        <span class="apidocSignatureSpan">(a, b, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function rcompare(a, b, loose) {
+  return compare(b, a, loose);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return exports.compare(a, b, loose);
+  });
+}
+
+exports.rsort = rsort;
+function rsort(list, loose) {
+  return list.sort(function(a, b) {
+    return exports.<span class="apidocCodeKeywordSpan">rcompare</span>(a, b, loose);
+  });
+}
+
+exports.gt = gt;
+function gt(a, b, loose) {
+  return compare(a, b, loose) &gt; 0;
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.rcompareIdentifiers" id="apidoc.element.packagecheck.semver410.rcompareIdentifiers">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>rcompareIdentifiers
+        <span class="apidocSignatureSpan">(a, b)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function rcompareIdentifiers(a, b) {
+  return compareIdentifiers(b, a);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.rsort" id="apidoc.element.packagecheck.semver410.rsort">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>rsort
+        <span class="apidocSignatureSpan">(list, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function rsort(list, loose) {
+  return list.sort(function(a, b) {
+    return exports.rcompare(a, b, loose);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.satisfies" id="apidoc.element.packagecheck.semver410.satisfies">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>satisfies
+        <span class="apidocSignatureSpan">(version, range, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function satisfies(version, range, loose) {
+  try {
+    range = new Range(range, loose);
+  } catch (er) {
+    return false;
+  }
+  return range.test(version);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.sort" id="apidoc.element.packagecheck.semver410.sort">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>sort
+        <span class="apidocSignatureSpan">(list, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function sort(list, loose) {
+  return list.sort(function(a, b) {
+    return exports.compare(a, b, loose);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+exports.rcompare = rcompare;
+function rcompare(a, b, loose) {
+return compare(b, a, loose);
+}
+
+exports.sort = sort;
+function sort(list, loose) {
+return list.<span class="apidocCodeKeywordSpan">sort</span>(function(a, b) {
+  return exports.compare(a, b, loose);
+});
+}
+
+exports.rsort = rsort;
+function rsort(list, loose) {
+return list.sort(function(a, b) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.toComparators" id="apidoc.element.packagecheck.semver410.toComparators">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>toComparators
+        <span class="apidocSignatureSpan">(range, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function toComparators(range, loose) {
+  return new Range(range, loose).set.map(function(comp) {
+    return comp.map(function(c) {
+      return c.value;
+    }).join(' ').trim().split(' ');
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.valid" id="apidoc.element.packagecheck.semver410.valid">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>valid
+        <span class="apidocSignatureSpan">(version, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function valid(version, loose) {
+  var v = parse(version, loose);
+  return v ? v.version : null;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.validRange" id="apidoc.element.packagecheck.semver410.validRange">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.</span>validRange
+        <span class="apidocSignatureSpan">(range, loose)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function validRange(range, loose) {
+  try {
+    // Return '*' instead of '' so that truthiness works.
+    // This will throw if it's invalid anyway
+    return new Range(range, loose).range || '*';
+  } catch (er) {
+    return null;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.packagecheck.semver410.prototype" id="apidoc.module.packagecheck.semver410.prototype">module packagecheck.semver410.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.prototype.compare" id="apidoc.element.packagecheck.semver410.prototype.compare">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>compare
+        <span class="apidocSignatureSpan">(other)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">compare = function (other) {
+  debug('SemVer.compare', this.version, this.loose, other);
+  if (!(other instanceof SemVer))
+    other = new SemVer(other, this.loose);
+
+  return this.compareMain(other) || this.comparePre(other);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return memo + digit / Math.pow(4100, index+1);
+  }, -1);
+};
+
+// Takes in two meteor versions. Returns true if the first one is less than the second.
+// Versions are strings or PackageVersion objects.
+PV.lessThan = function (versionOne, versionTwo) {
+  return PV.<span class="apidocCodeKeywordSpan">compare</span>(versionOne, versionTwo) &lt; 0;
+};
+
+// Given a string version, returns its major version (the first section of the
+// semver), as an integer. Two versions are compatible if they have the same
+// version number.
+//
+// versionString: valid meteor version string.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.prototype.compareMain" id="apidoc.element.packagecheck.semver410.prototype.compareMain">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>compareMain
+        <span class="apidocSignatureSpan">(other)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">compareMain = function (other) {
+  if (!(other instanceof SemVer))
+    other = new SemVer(other, this.loose);
+
+  return compareIdentifiers(this.major, other.major) ||
+         compareIdentifiers(this.minor, other.minor) ||
+         compareIdentifiers(this.patch, other.patch);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+SemVer.prototype.compare = function(other) {
+debug('SemVer.compare', this.version, this.loose, other);
+if (!(other instanceof SemVer))
+  other = new SemVer(other, this.loose);
+
+return this.<span class="apidocCodeKeywordSpan">compareMain</span>(other) || this.comparePre(other);
+};
+
+SemVer.prototype.compareMain = function(other) {
+if (!(other instanceof SemVer))
+  other = new SemVer(other, this.loose);
+
+return compareIdentifiers(this.major, other.major) ||
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.prototype.comparePre" id="apidoc.element.packagecheck.semver410.prototype.comparePre">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>comparePre
+        <span class="apidocSignatureSpan">(other)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">comparePre = function (other) {
+  if (!(other instanceof SemVer))
+    other = new SemVer(other, this.loose);
+
+  // NOT having a prerelease is &gt; having one
+  if (this.prerelease.length &amp;&amp; !other.prerelease.length)
+    return -1;
+  else if (!this.prerelease.length &amp;&amp; other.prerelease.length)
+    return 1;
+  else if (!this.prerelease.length &amp;&amp; !other.prerelease.length)
+    return 0;
+
+  var i = 0;
+  do {
+    var a = this.prerelease[i];
+    var b = other.prerelease[i];
+    debug('prerelease compare', i, a, b);
+    if (a === undefined &amp;&amp; b === undefined)
+      return 0;
+    else if (b === undefined)
+      return 1;
+    else if (a === undefined)
+      return -1;
+    else if (a === b)
+      continue;
+    else
+      return compareIdentifiers(a, b);
+  } while (++i);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+};
+
+SemVer.prototype.compare = function(other) {
+debug('SemVer.compare', this.version, this.loose, other);
+if (!(other instanceof SemVer))
+  other = new SemVer(other, this.loose);
+
+return this.compareMain(other) || this.<span class="apidocCodeKeywordSpan">comparePre</span>(other);
+};
+
+SemVer.prototype.compareMain = function(other) {
+if (!(other instanceof SemVer))
+  other = new SemVer(other, this.loose);
+
+return compareIdentifiers(this.major, other.major) ||
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.prototype.format" id="apidoc.element.packagecheck.semver410.prototype.format">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>format
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">format = function () {
+  this.version = this.major + '.' + this.minor + '.' + this.patch;
+  if (this.prerelease.length)
+    this.version += '-' + this.prerelease.join('.');
+  return this.version;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  this.prerelease = [];
+else
+  this.prerelease = m[4].split('.').map(function(id) {
+    return (/^[0-9]+$/.test(id)) ? +id : id;
+  });
+
+this.build = m[5] ? m[5].split('.') : [];
+this.<span class="apidocCodeKeywordSpan">format</span>();
+}
+
+SemVer.prototype.format = function() {
+this.version = this.major + '.' + this.minor + '.' + this.patch;
+if (this.prerelease.length)
+  this.version += '-' + this.prerelease.join('.');
+return this.version;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.prototype.inc" id="apidoc.element.packagecheck.semver410.prototype.inc">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>inc
+        <span class="apidocSignatureSpan">(release, identifier)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">inc = function (release, identifier) {
+  switch (release) {
+    case 'premajor':
+      this.prerelease.length = 0;
+      this.patch = 0;
+      this.minor = 0;
+      this.major++;
+      this.inc('pre', identifier);
+      break;
+    case 'preminor':
+      this.prerelease.length = 0;
+      this.patch = 0;
+      this.minor++;
+      this.inc('pre', identifier);
+      break;
+    case 'prepatch':
+      // If this is already a prerelease, it will bump to the next version
+      // drop any prereleases that might already exist, since they are not
+      // relevant at this point.
+      this.prerelease.length = 0;
+      this.inc('patch', identifier);
+      this.inc('pre', identifier);
+      break;
+    // If the input is a non-prerelease version, this acts the same as
+    // prepatch.
+    case 'prerelease':
+      if (this.prerelease.length === 0)
+        this.inc('patch', identifier);
+      this.inc('pre', identifier);
+      break;
+
+    case 'major':
+      // If this is a pre-major version, bump up to the same major version.
+      // Otherwise increment major.
+      // 1.0.0-5 bumps to 1.0.0
+      // 1.1.0 bumps to 2.0.0
+      if (this.minor !== 0 || this.patch !== 0 || this.prerelease.length === 0)
+        this.major++;
+      this.minor = 0;
+      this.patch = 0;
+      this.prerelease = [];
+      break;
+    case 'minor':
+      // If this is a pre-minor version, bump up to the same minor version.
+      // Otherwise increment minor.
+      // 1.2.0-5 bumps to 1.2.0
+      // 1.2.1 bumps to 1.3.0
+      if (this.patch !== 0 || this.prerelease.length === 0)
+        this.minor++;
+      this.patch = 0;
+      this.prerelease = [];
+      break;
+    case 'patch':
+      // If this is not a pre-release version, it will increment the patch.
+      // If it is a pre-release it will bump up to the same patch version.
+      // 1.2.0-5 patches to 1.2.0
+      // 1.2.0 patches to 1.2.1
+      if (this.prerelease.length === 0)
+        this.patch++;
+      this.prerelease = [];
+      break;
+    // This probably shouldn't be used publicly.
+    // 1.0.0 "pre" would become 1.0.0-0 which is the wrong direction.
+    case 'pre':
+      if (this.prerelease.length === 0)
+        this.prerelease = [0];
+      else {
+        var i = this.prerelease.length;
+        while (--i &gt;= 0) {
+          if (typeof this.prerelease[i] === 'number') {
+            this.prerelease[i]++;
+            i = -2;
+          }
+        }
+        if (i === -1) // didn't increment anything
+          this.prerelease.push(0);
+      }
+      if (identifier) {
+        // 1.2.0-beta.1 bumps to 1.2.0-beta.2,
+        // 1.2.0-beta.fooblz or 1.2.0-beta bumps to 1.2.0-beta.0
+        if (this.prerelease[0] === identifier) {
+          if (isNaN(this.prerelease[1]))
+            this.prerelease = [identifier, 0];
+        } else
+          this.prerelease = [identifier, 0];
+      }
+      break;
+
+    default:
+      throw new Error('invalid increment argument: ' + release);
+  }
+  this.format();
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+SemVer.prototype.inc = function(release, identifier) {
+switch (release) {
+  case 'premajor':
+    this.prerelease.length = 0;
+    this.patch = 0;
+    this.minor = 0;
+    this.major++;
+    this.<span class="apidocCodeKeywordSpan">inc</span>('pre', identifier);
+    break;
+  case 'preminor':
+    this.prerelease.length = 0;
+    this.patch = 0;
+    this.minor++;
+    this.inc('pre', identifier);
+    break;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.prototype.inspect" id="apidoc.element.packagecheck.semver410.prototype.inspect">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>inspect
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">inspect = function () {
+  return '&lt;SemVer "' + this + '"&gt;';
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.semver410.prototype.toString" id="apidoc.element.packagecheck.semver410.prototype.toString">
+        function <span class="apidocSignatureSpan">packagecheck.semver410.prototype.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+  return this.version;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.packagecheck.version" id="apidoc.module.packagecheck.version">module packagecheck.version</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.version.getLatest" id="apidoc.element.packagecheck.version.getLatest">
+        function <span class="apidocSignatureSpan">packagecheck.version.</span>getLatest
+        <span class="apidocSignatureSpan">(packageName)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getLatest = function (packageName) {
+
+  // Check to see if we've cached this result
+
+  if (Version.latest[packageName]) {
+    return Version.latest[packageName];
+  }
+
+  // Rather than reimplement Meteor's entire package database mechanism in order
+  // to get the latest versions, we simply call out to Meteor's command line.
+
+  var result = exec('meteor show ' + packageName);
+
+  if (result.status != 0) {
+    throw(result.stderr);
+  }
+  else {
+    var lines = result.stdout.split(EOL);
+    var idx = 0;
+    var latest = null;
+
+    // Find the list of recent versions
+    while (idx &lt; lines.length &amp;&amp; lines[idx++] !== 'Recent versions:') ;
+
+    // Get the last line in this list
+    while (idx &lt; lines.length &amp;&amp; lines[idx] !== '') {
+      latest = lines[idx];
+      idx++;
+    }
+
+    // If we have a line, get the version and test
+    if (latest !== null) {
+      latestVersion = latest.split(' ').filter(function(item) { return item != ''; })[0];
+      Version.latest[packageName] = latestVersion;
+      return latestVersion;
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  var version = (splitString.length &gt; 1) ? splitString[1] : null;
+
+  if (version) {
+
+// This package has a version constraint
+
+try {
+  var latestVersion = Version.<span class="apidocCodeKeywordSpan">getLatest</span>(packageName);
+  if (latestVersion) {
+    if (PackageVersion.lessThan(version, latestVersion)) {
+      console.log(packageName + ' version ' + latestVersion + ' is available (' + version + ' currently
+ specified).');
+      return true;
+    } else if (verbose) {
+      console.log(packageName + ' version ' + latestVersion + ' is up to date.');
+      return true;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.packagecheck.version.getVersionUsed" id="apidoc.element.packagecheck.version.getVersionUsed">
+        function <span class="apidocSignatureSpan">packagecheck.version.</span>getVersionUsed
+        <span class="apidocSignatureSpan">(packageName)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getVersionUsed = function (packageName) {
+
+  // Cached the used version info if we haven't already done so
+
+  if (typeof Version.used === 'undefined') {
+
+    Version.used = {};
+
+    var versions = fs.readFileSync(".meteor/versions", { encoding: 'utf-8' });
+    var lines = versions.split(EOL);
+
+    lines.forEach(function(line) {
+
+      var splitString = line.split('@');
+      var version = (splitString.length &gt; 1) ? splitString[1] : null;
+      var name = splitString[0];
+
+      if (version)
+        Version.used[name] = version
+
+    });
+  }
+
+  return Version.used[packageName];
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+console.log(e);
+return true;
+    }
+  } else {
+
+    // The package is unconstrained.
+
+    var used = Version.<span class="apidocCodeKeywordSpan">getVersionUsed</span>(packageName);
+
+    try {
+var latestVersion = Version.getLatest(packageName);
+
+if (used &amp;&amp; latestVersion &amp;&amp; latestVersion !== 'local') {
+  if (PackageVersion.lessThan(used, latestVersion)) {
+    console.log(packageName + ' is not constrained. Version ' + latestVersion + ' is available (' + used + &amp;#
+x27; currently used by the project).');
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
